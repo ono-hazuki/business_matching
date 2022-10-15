@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Auth::routes();
+
+Route::get('/', 'DemandController@index')->middleware('auth');
+
+Route::resource('demands', 'DemandController')->middleware('auth');
+
+Route::get('/my_demands', 'DemandController@my_demands')->middleware('auth');
