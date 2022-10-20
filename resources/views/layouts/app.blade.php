@@ -39,6 +39,9 @@
                         <a href=/my_demands>作成した案件を確認</a>
                     </ul>
                     <ul class="navbar-nav mr-auto">
+                        <a href=/candidacy_demands>立候補した案件を確認</a>
+                    </ul>
+                    <ul class="navbar-nav mr-auto">
                         <a href=#>ダイレクトメッセージ</a>
                     </ul>
 

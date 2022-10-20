@@ -42,21 +42,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Demand');
     }
     
-    /*
-    public function consenter()
+    public function consenters()
     {
-        return $this->hasOne('App\Consenter');
+        return $this->hasMany('App\Consenter');
     }
-    */ 
     
-    
-    /*
-    public function get_demands()
-    {
-        return $this->belongsToMany('App\Demand');
-    }
-
-    */    
     
     public function direct_messages()
     {

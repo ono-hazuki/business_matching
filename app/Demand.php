@@ -11,19 +11,10 @@ class Demand extends Model
         return $this->belongsTo('App\User');
     }
     
-    /*
     public function consenters()
     {
-        return $this->belongsToMany('App\Consenter');
+        return $this->hasMany('App\Consenter');
     }
-    */
-    
-    /*
-    public function get_users()
-    {
-        return $this->belongsToMany('App\User');
-    }
-    */
     
     public function direct_messages()
     {

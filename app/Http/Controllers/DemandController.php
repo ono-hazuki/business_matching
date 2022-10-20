@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Demand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Consenter;
 
 
 class DemandController extends Controller
@@ -17,6 +19,7 @@ class DemandController extends Controller
     public function index()
     {
         $user_id = Auth::id();
+        
         $demands = Demand::where('user_id', '!=', $user_id)->get();
         
         return view('demands.index', compact('demands'));
@@ -63,7 +66,9 @@ class DemandController extends Controller
         if($demand->user_id == Auth::id()){
             return view('demands.show', compact('demand'));
         }else{
-            return redirect('/')->with('message', '指定のページへのアクセスはできません');
+            $registered = Consenter::where('user_id', '=', Auth::id())->where('demand_id', '=', $demand->id)->exists();
+            $consenter = Consenter::where('user_id', '=', Auth::id())->where('demand_id', '=', $demand->id)->first();;
+            return view('demands.other_show', compact('demand','registered', 'consenter'));
         }
     }
 

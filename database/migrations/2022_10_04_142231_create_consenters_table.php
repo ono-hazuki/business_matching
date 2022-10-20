@@ -18,6 +18,7 @@ class CreateConsentersTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('demand_id')->unsigned();
             $table->integer('status')->unsigned()->default('0');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

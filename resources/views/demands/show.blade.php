@@ -48,6 +48,10 @@
         </td>
         <td></td>
     </tr>
+    <tr>
+        <td><a href="/consenters/{{$demand->id}}">この案件に立候補した人を確認する</a></td>
+        <td></td>
+    </tr>
 </table>
 
 @endsection

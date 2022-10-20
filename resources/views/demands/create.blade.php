@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>依頼を作成する</h1>
+<h1>案件を作成する</h1>
 
 <form action="/demands" method="post">
   @csrf

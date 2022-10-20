@@ -6,18 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Consenter extends Model
 {
-        /*
-    
-    public function user()
+ public function user()
     {
         return $this->belongsTo('App\User');
     }
     
-    
-    public function demands()
+    public function demand()
     {
-        return $this->belongsToMany('App\Demand');
+        return $this->belongsTo('App\Demand');
     }
-    
-    */
+ 
 }

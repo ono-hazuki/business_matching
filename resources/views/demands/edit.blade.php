@@ -30,12 +30,15 @@
             @if($demand->status == 0)
             <label>無効</label><input type="radio" name="status" value=0 checked>
             <label>有効</label><input type="radio" name="status" value=1>
+            <label>終了</label><input type="radio" name="status" value=2>
             @elseif($demand->status == 1)
             <label>無効</label><input type="radio" name="status" value=0>
             <label>有効</label><input type="radio" name="status" value=1 checked>
+            <label>終了</label><input type="radio" name="status" value=2>
             @else
             <label>無効</label><input type="radio" name="status" value=0>
             <label>有効</label><input type="radio" name="status" value=1>
+            <label>終了</label><input type="radio" name="status" value=2>
             @endif
           </td>
       </tr>
