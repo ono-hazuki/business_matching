@@ -2,7 +2,7 @@
 
 @section('content')
 
-@foreach($consenters as $consenter)
+
 
 <table>
     <tr>
@@ -10,6 +10,7 @@
         <th>詳細</th>
         <th>判定</th>
     </tr>
+    @foreach($consenters as $consenter)
     <tr>
         <td>{{$consenter->demand->title}}</td>
         <td><a href="/demands/{{$consenter->demand_id}}">詳細</a></td>
@@ -23,8 +24,9 @@
             @endif
         </td>
     </tr>
+    @endforeach
 </table>
 
-@endforeach
+
 
 @endsection

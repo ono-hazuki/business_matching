@@ -57,7 +57,7 @@
     <tr>
         <td>
             @if($registered)
-            <form action="/consenters/{{$demand->id}}/{{$consenter->id}}" method="post">
+            <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/destroy" method="post">
                 @csrf
                 <button type="submit">案件を辞退する</button>
             </form>

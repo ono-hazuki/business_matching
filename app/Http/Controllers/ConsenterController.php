@@ -17,9 +17,13 @@ class ConsenterController extends Controller
      */
     public function judge_index(Demand $demand)
     {
+        if($demand->user_id == Auth::id()){
         $consenters = Consenter::where('demand_id', '=', $demand->id)->get();
 
         return view('consenters.judge_index', compact('demand', 'consenters'));
+        }else{
+            return redirect('/')->with('message', '指定のページへのアクセスはできません');
+        }
     }
 
     /**

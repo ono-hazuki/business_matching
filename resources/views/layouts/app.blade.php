@@ -42,7 +42,7 @@
                         <a href=/candidacy_demands>立候補した案件を確認</a>
                     </ul>
                     <ul class="navbar-nav mr-auto">
-                        <a href=#>ダイレクトメッセージ</a>
+                        <a href=/direct_messages>ダイレクトメッセージ</a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

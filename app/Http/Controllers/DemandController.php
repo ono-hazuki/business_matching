@@ -122,8 +122,7 @@ class DemandController extends Controller
     
     public function my_demands()
     {
-        $user_id = Auth::id();
-        $my_demands = Demand::where('user_id', '=', $user_id)->get();
+        $my_demands = Demand::where('user_id', '=', Auth::id())->get();
         
         return view('demands.my_demands', compact('my_demands'));
     }

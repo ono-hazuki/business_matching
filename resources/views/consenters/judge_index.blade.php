@@ -17,13 +17,13 @@
                     @endif
                 </td>
                 <td>
-                    <form action="/consenters/{{$demand->id}}/{{$consenter->id}}" method="post">
+                    <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/update" method="post">
                         @csrf
                         <button type="submit" name="status" value=1>承認する</button>
                     </form>
                 </td>
                 <td>
-                    <form action="/consenters/{{$demand->id}}/{{$consenter->id}}" method="post">
+                    <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/update" method="post">
                         @csrf
                         <button type="submit" name="status" value=2>却下する</button>
                     </form>
