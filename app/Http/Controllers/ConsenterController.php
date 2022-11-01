@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Consenter;
@@ -15,15 +14,9 @@ class ConsenterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function judge_index(Demand $demand)
+    public function index()
     {
-        if($demand->user_id == Auth::id()){
-        $consenters = Consenter::where('demand_id', '=', $demand->id)->get();
 
-        return view('consenters.judge_index', compact('demand', 'consenters'));
-        }else{
-            return redirect('/')->with('message', '指定のページへのアクセスはできません');
-        }
     }
 
     /**
@@ -50,7 +43,6 @@ class ConsenterController extends Controller
         $consenter->save();
         
         return redirect('/')->with('message', '立候補を行いました');
-        
     }
 
     /**
@@ -88,7 +80,8 @@ class ConsenterController extends Controller
         $consenter->save();
         
         return redirect()->action(
-            'ConsenterController@judge_index', ['id' => $demand->id])->with('message', '状態が変更されました');
+            'DemandController@show', ['id' => $demand->id]
+        )->with('message', '状態が変更されました');
     }
 
     /**
@@ -106,7 +99,6 @@ class ConsenterController extends Controller
     
     public function candidacy_demands()
     {
-        
         $consenters = Consenter::where('user_id', '=', Auth::id())->get();
 
         return view('consenters.candidacy_demands', compact('consenters'));

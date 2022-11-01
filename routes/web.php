@@ -22,7 +22,6 @@ Route::resource('demands', 'DemandController')->middleware('auth');
 Route::get('/my_demands', 'DemandController@my_demands')->middleware('auth');
 
 
-Route::get('/consenters/{demand}', 'ConsenterController@judge_index')->middleware('auth');
 
 Route::get('/candidacy_demands', 'ConsenterController@candidacy_demands')->middleware('auth');
 
@@ -33,14 +32,10 @@ Route::post('/consenters/{demand}/{consenter}/update', 'ConsenterController@upda
 Route::post('/consenters/{demand}/{consenter}/destroy', 'ConsenterController@destroy')->middleware('auth');
 
 
-Route::get('/direct_messages', 'DirectMessageController@index')->middleware('auth');
-
 Route::get('/direct_messages/{demand}', 'DirectMessageController@message')->middleware('auth');
 
 Route::post('/direct_messages/{demand}', 'DirectMessageController@store')->middleware('auth');
 
 Route::post('/direct_messages/{demand}/{directMessage}/destroy', 'DirectMessageController@destroy')->middleware('auth');
-
-
 
 

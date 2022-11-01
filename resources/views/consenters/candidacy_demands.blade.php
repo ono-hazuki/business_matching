@@ -23,6 +23,11 @@
             未確認
             @endif
         </td>
+        <td>
+            @if($consenter->status == 1)
+            <a href="/direct_messages/{{$consenter->demand->id}}">メッセージ</a>
+            @endif
+        </td>
     </tr>
     @endforeach
 </table>

@@ -15,13 +15,6 @@ class DirectMessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $my_demands = Demand::where('user_id', '=', Auth::id())->get();
-        $other_demands = Consenter::where('user_id', '=', Auth::id())->where('status', '=', 1)->get();
-        
-        return view('direct_messages.index', compact('my_demands', 'other_demands'));
-    }
     
     public function message(Demand $demand)
     {

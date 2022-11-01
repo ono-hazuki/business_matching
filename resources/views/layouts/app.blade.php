@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/change_app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -32,17 +34,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <a href=/demands/create>案件を作成</a>
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <a href=/my_demands>作成した案件を確認</a>
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <a href=/candidacy_demands>立候補した案件を確認</a>
-                    </ul>
-                    <ul class="navbar-nav mr-auto">
-                        <a href=/direct_messages>ダイレクトメッセージ</a>
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href=/demands/create class="nav-link px-3 link-secondary">案件を作成</a></li>
+                        <li><a href=/my_demands class="nav-link px-3 link-secondary">作成した案件を確認</a></li>
+                        <li><a href=/candidacy_demands class="nav-link px-3 link-secondary">立候補した案件を確認</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -50,11 +45,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
                                 </li>
                             @endif
                         @else
@@ -67,14 +62,14 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                     <a class="dropdown-item" href="/">
-                                        home
+                                        ホーム
                                     </a>
                                 </div>
                             </li>
@@ -84,11 +79,16 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main role="main" class="container">
             @if (session('message'))
                 <span>{{ session('message') }}</span>
             @endif
-            @yield('content')
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm demands-index-title">
+                    <h1>@yield('title')</h1>
+                </div>
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>

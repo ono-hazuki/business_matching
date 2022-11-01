@@ -18,11 +18,12 @@ class DemandController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
+        $demands = Demand::where('user_id', '!=', Auth::id())->orderByRaw('created_at DESC')->get();
         
-        $demands = Demand::where('user_id', '!=', $user_id)->get();
+        $my_user_id = Auth::id();
         
-        return view('demands.index', compact('demands'));
+        
+        return view('demands.index', compact('demands', 'my_user_id'));
     }
 
     /**
@@ -64,7 +65,8 @@ class DemandController extends Controller
     public function show(Demand $demand)
     {
         if($demand->user_id == Auth::id()){
-            return view('demands.show', compact('demand'));
+            $consenters = Consenter::where('demand_id', '=', $demand->id)->get();
+            return view('demands.show', compact('demand', 'consenters'));
         }else{
             $registered = Consenter::where('user_id', '=', Auth::id())->where('demand_id', '=', $demand->id)->exists();
             $consenter = Consenter::where('user_id', '=', Auth::id())->where('demand_id', '=', $demand->id)->first();;

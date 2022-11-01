@@ -1,22 +1,28 @@
 
 @extends('layouts.app')
-
+@section('title', '案件一覧')
 @section('content')
-<h1>案件一覧</h1>
-<table>
-    <tr>
-        <th>タイトル</th>
-        <th>内容</th>
-        <th>詳細</th>
-    </tr>
     @foreach($demands as $demand)
         @continue($demand->status == 2)
-    <tr>
-        <td>{{$demand->title}}</td>
-        <td>{{$demand->description}}</td>
-        <td><a href="/demands/{{$demand->id}}">詳細</a></td>
-    </tr>
+        <div class="card text-dark bg-light mb-3">
+            <div class="card-header">
+                <h2>{{$demand->title}}</h2>
+            </div>
+            <div class="card-body">
+                <div style="width: 100%; height: 100px; overflow-y: scroll; border: 1px #C0C0C0 solid; border-radius: 5px; background-color: white;">
+                    <p class="card-text" style="padding:10px;">{{$demand->description}}</p>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-outline-primary mt-3" href="/demands/{{$demand->id}}" role="button">詳細</a>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    @foreach($demand->consenters as $consenter)
+                        @if($consenter->user_id == $my_user_id)
+                            <p>この案件は立候補済です</p>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
     @endforeach
-</table>
-
 @endsection
