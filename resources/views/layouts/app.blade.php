@@ -18,12 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/change_app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/change.css') }}" rel="stylesheet">
     
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     ビジネスマッチング
@@ -80,13 +80,27 @@
         </nav>
 
         <main role="main" class="container">
-            @if (session('message'))
-                <span>{{ session('message') }}</span>
-            @endif
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
-                <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm demands-index-title">
+            <div class="my-3 p-3 bg-white rounded shadow-sm"  style="position: relative; top: 4rem;">
+                <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm" style="color: white; background-color: orange;">
                     <h1>@yield('title')</h1>
                 </div>
+                @if(session('store_message'))
+                    <div class="alert alert-success" role="alert">
+                        <span>{{ session('store_message') }}</span>
+                    </div>
+                @elseif(session('warning_message'))
+                    <div class="alert alert-danger" role="alert">
+                        <span>{{ session('warning_message') }}</span>
+                    </div>
+                @elseif(session('update_message'))
+                    <div class="alert alert-success" role="alert">
+                        <span>{{ session('update_message') }}</span>
+                    </div>
+                @elseif(session('destroy_message'))
+                    <div class="alert alert-dark" role="alert">
+                        <span>{{ session('destroy_message') }}</span>
+                    </div>
+                @endif
                 @yield('content')
             </div>
         </main>

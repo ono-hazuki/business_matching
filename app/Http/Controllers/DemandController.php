@@ -53,7 +53,7 @@ class DemandController extends Controller
         $demand->user_id = Auth::id();
         $demand->save();
         
-        return redirect()->route('demands.show', ['id'=> $demand->id])->with('message', '新しい案件が作成されました');
+        return redirect()->route('demands.show', ['id'=> $demand->id])->with('store_message', '新しい案件が作成されました');
     }
 
     /**
@@ -85,7 +85,7 @@ class DemandController extends Controller
         if($demand->user_id == Auth::id()){
             return view('demands.edit', compact('demand'));
         }else{
-            return redirect('/')->with('message', '指定のページへのアクセスはできません');
+            return redirect('/')->with('warning_message', '指定のページへのアクセスはできません');
         }
     }
 
@@ -106,7 +106,7 @@ class DemandController extends Controller
         $demand->user_id = Auth::id();
         $demand->save();
         
-        return redirect()->route('demands.show', ['id'=> $demand->id])->with('message', '案件が修正されました');
+        return redirect()->route('demands.show', ['id'=> $demand->id])->with('update_message', '案件が修正されました');
     }
 
     /**
@@ -119,7 +119,7 @@ class DemandController extends Controller
     {
         $demand->delete();
         
-        return redirect('/my_demands')->with('message', '案件が削除されました');
+        return redirect('/my_demands')->with('destroy_message', '案件が削除されました');
     }
     
     public function my_demands()

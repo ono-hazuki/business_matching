@@ -42,7 +42,7 @@ class ConsenterController extends Controller
         $consenter->demand_id = $demand->id;
         $consenter->save();
         
-        return redirect('/')->with('message', '立候補を行いました');
+        return redirect('/')->with('store_message', '立候補を行いました');
     }
 
     /**
@@ -81,7 +81,7 @@ class ConsenterController extends Controller
         
         return redirect()->action(
             'DemandController@show', ['id' => $demand->id]
-        )->with('message', '状態が変更されました');
+        )->with('update_message', '状態が変更されました');
     }
 
     /**
@@ -94,7 +94,7 @@ class ConsenterController extends Controller
     {
         $consenter->delete();
         
-        return redirect('/candidacy_demands')->with('message', '案件を辞退しました');
+        return redirect('/candidacy_demands')->with('destroy_message', '案件を辞退しました');
     }
     
     public function candidacy_demands()

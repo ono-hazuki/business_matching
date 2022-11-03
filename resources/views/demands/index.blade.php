@@ -4,7 +4,7 @@
 @section('content')
     @foreach($demands as $demand)
         @continue($demand->status == 2)
-        <div class="card text-dark bg-light mb-3">
+        <div class="card text-dark bg-light mb-3 mx-auto" style="width: 95%;">
             <div class="card-header">
                 <h2>{{$demand->title}}</h2>
             </div>

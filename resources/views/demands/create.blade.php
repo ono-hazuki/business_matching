@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="text-right">
-           <button type="submit" class="btn btn-primary btn-lg">登録</button>
+           <button type="submit" class="btn btn-primary btn-lg px-4">登録</button>
         </div>
     </form>
 </div>

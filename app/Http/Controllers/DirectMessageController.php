@@ -26,7 +26,7 @@ class DirectMessageController extends Controller
             return view('direct_messages.message', compact('direct_messages', 'demand', 'my_user_id'));
             
         }else{
-            return redirect('/')->with('message', '指定のページへのアクセスはできません');
+            return redirect('/')->with('warning_message', '指定のページへのアクセスはできません');
         }
 
     }

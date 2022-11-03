@@ -1,52 +1,110 @@
 
 @extends('layouts.app')
 
+@section('title', '案件を編集する')
 @section('content')
-<h1>依頼を編集する</h1>
-
-<form action="/demands/{{$demand->id}}" method="post">
-  @csrf
-  <input type="hidden" name="_method" value="PUT">
-  <table>
-      <tr>
-          <td><label>タイトル</label></td>
-          <td><input type="text" name="title" value="{{$demand->title}}"></td>
-      </tr>
-      <tr>
-          <td><label>内容</label></td>
-          <td><textarea name="description">{{$demand->description}}</textarea></td>
-      </tr>
-      <tr>
-          <td><label>値段</label></td>
-          <td><input type="number" name="price" value="{{$demand->price}}">円</td>
-      </tr>
-      <tr>
-          <td><label>受付終了日</label></td>
-          <td><input type="date" name="deadline" value="{{$demand->deadline}}"></td>
-      </tr>
-      <tr>
-        　<td><label>募集の有効</label></td>
-          <td>
+<div class="card-body m-4 text-" style="width: 35rem;">
+    <form  action="/demands/{{$demand->id}}" method="post">
+        @csrf
+        <input type="hidden" name="_method" value="PUT">
+        <div class="form-group mb-4">
+            <label class="lead">タイトル</label>
+            <input type="text" name="title" class="form-control" value="{{$demand->title}}" required>
+        </div>
+        <div class="form-group mb-4">
+            <label class="lead">内容</label>
+            <textarea name="description" class="form-control" required style="height: 15rem;">{{$demand->description}}</textarea>
+        </div>
+        <div class="form-group mb-4">
+            <label class="lead">値段</label>
+            <input type="number" name="price" class="form-control" value="{{$demand->price}}" required>
+        </div>
+        <div class="form-group mb-4">
+            <label class="lead">受付終了日</label>
+            <input type="date" name="deadline" class="form-control" value="{{$demand->deadline}}" required>
+        </div>
+        <div class="form-group mb-4">
             @if($demand->status == 0)
-            <label>無効</label><input type="radio" name="status" value=0 checked>
-            <label>有効</label><input type="radio" name="status" value=1>
-            <label>終了</label><input type="radio" name="status" value=2>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=0 checked>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        無効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=1>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        有効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=2>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        終了
+                    </label>
+                </div>
             @elseif($demand->status == 1)
-            <label>無効</label><input type="radio" name="status" value=0>
-            <label>有効</label><input type="radio" name="status" value=1 checked>
-            <label>終了</label><input type="radio" name="status" value=2>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=0>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        無効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=1 checked>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        有効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=2>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        終了
+                    </label>
+                </div>
+            @elseif($demand->status == 2)
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=0>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        無効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=1>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        有効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=2 checked>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        終了
+                    </label>
+                </div>
             @else
-            <label>無効</label><input type="radio" name="status" value=0>
-            <label>有効</label><input type="radio" name="status" value=1>
-            <label>終了</label><input type="radio" name="status" value=2>
+             <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=0  checked>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        無効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=1>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        有効
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status" value=2>
+                    <label class="form-check-label lead" for="gridRadios2">
+                        終了
+                    </label>
+                </div>
             @endif
-          </td>
-      </tr>
-      <tr>
-          <td><input type="submit"></td>
-          <td></td>
-      </tr>
-  </table>
-</form>
-
+        </div>
+        <div class="text-right">
+           <button type="submit" class="btn btn-primary btn-lg px-4">登録</button>
+        </div>
+    </form>
+</div>
 @endsection
