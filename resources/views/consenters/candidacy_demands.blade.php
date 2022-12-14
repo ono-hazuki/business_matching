@@ -16,7 +16,7 @@
         @foreach($consenters as $consenter)
             <tr>
                 <th scope="row"></th>
-                <td>{{$consenter->demand->title}}</td>
+                <td>{{$consenter->demand->title??'案件消去済'}}</td>
                 <td>
                     @if($consenter->status == 1)
                         承認中
@@ -29,7 +29,7 @@
                 <td><a href="/demands/{{$consenter->demand_id}}">詳細</a></td>
                 <td>
                     @if($consenter->status == 1)
-                        <a href="/direct_messages/{{$consenter->demand->id}}">メッセージ</a>
+                        <a href="/direct_messages/{{$consenter->demand->id??'案件消去済'}}">メッセージ</a>
                     @endif
                 </td>
             </tr>

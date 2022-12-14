@@ -37,7 +37,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-                </div>
+            </div>
         @endif
     <hr class="mt-0">
     <div class="w-75 mx-auto">
@@ -53,7 +53,10 @@
     </div>
 </div>
 <script>
-    let scroll = document.getElementById('app');
-    scroll.scrollIntoView(false);
+    //let scroll = document.getElementById('app');
+    //document.getElementById('app').scrollIntoView(false);
+    window.scroll(0, document.getElementById("contentBody").scrollHeight);
 </script>
+
+
 @endsection

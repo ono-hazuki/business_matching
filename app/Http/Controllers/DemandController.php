@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Consenter;
+use App\DirectMessage;
 
 
 class DemandController extends Controller
@@ -118,6 +119,8 @@ class DemandController extends Controller
     public function destroy(Demand $demand)
     {
         $demand->delete();
+        Consenter::where('demand_id', '=', $demand->id)->delete();
+        DirectMessage::where('demand_id', '=', $demand->id)->delete();
         
         return redirect('/my_demands')->with('destroy_message', '案件が削除されました');
     }

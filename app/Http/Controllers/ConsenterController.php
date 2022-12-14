@@ -76,12 +76,15 @@ class ConsenterController extends Controller
      */
     public function update(Request $request, Demand $demand, Consenter $consenter)
     {
-        $consenter->status = $request->input('status');
-        $consenter->save();
-        
-        return redirect()->action(
-            'DemandController@show', ['id' => $demand->id]
-        )->with('update_message', '状態が変更されました');
+        if($request->demand_id == $demand->id && $request->user_id == Auth::id()){
+            $consenter->status = $request->input('status');
+            $consenter->save();
+            
+            return response()->json($consenter);
+            
+        }else{
+            return redirect('/')->with('warning_message', '指定のページへのアクセスはできません');
+        };
     }
 
     /**

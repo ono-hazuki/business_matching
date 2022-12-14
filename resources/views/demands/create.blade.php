@@ -15,7 +15,7 @@
         </div>
         <div class="form-group mb-4">
             <label class="lead">値段</label>
-            <input type="number" name="price" class="form-control"  placeholder="値段を入力" required>
+            <input type="number" name="price" class="form-control"  placeholder="値段を入力" min="0" required>
         </div>
         <div class="form-group mb-4">
             <label class="lead">受付終了日</label>

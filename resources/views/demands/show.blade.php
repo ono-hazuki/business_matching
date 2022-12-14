@@ -56,8 +56,7 @@
     </div>
 </div> 
 
-
-<div class="d-flex justify-content-between mt-3">
+<div id="div-change-status" class="d-flex justify-content-between mt-3">
     <table class="table table-hover table-bordered ml-5 mb-auto" style="width: 30rem;">
         <thead>
             <tr>
@@ -69,29 +68,41 @@
         <tbody>
             @foreach($consenters as $consenter)
                 @if($consenter->status == 0)
-                    <tr>
+                    <tr id="tr-status-0-{{$consenter->id}}">
                         <td class="text-center">{{$consenter->user->name}}</td>
                         <td class="text-center">
-                            @if($consenter->status == 0)
-                                未確認
-                            @elseif($consenter->status == 1)
-                                承認中
-                            @else
-                                却下
-                            @endif
+                            未確認
                         </td>
                         <td class="d-flex justify-content-between px-3">
-                            <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/update" method="post">
-                                @csrf
-                                <button class="btn btn-primary px-3" type="submit" name="status" value=1>承認する</button>
-                            </form>
-                            <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/update" method="post">
-                                @csrf
-                                <button class="btn btn-primary px-3" type="submit" name="status" value=2>却下する</button>
-                            </form>
+                            <button id="btn-status-0-1-{{$consenter->id}}" class="btn btn-primary px-3">承認する</button>
+                            <button id="btn-status-0-2-{{$consenter->id}}" class="btn btn-primary px-3">却下する</button>
                         </td>
                     </tr>
                 @endif
+                <script>
+                    $(document).on("click", "#btn-status-0-1-{{$consenter->id}}", function() {
+                        let demand = {
+                            id: {{$demand->id}}, 
+                            userId: {{$demand->user_id}}
+                        };
+                        let consenter = {
+                            id: {{$consenter->id}},
+                            userName: "{{$consenter->user->name}}"
+                        };
+                        approval(demand, consenter);
+                    });
+                    $(document).on("click", "#btn-status-0-2-{{$consenter->id}}", function() {
+                        let demand = {
+                            id: {{$demand->id}}, 
+                            userId: {{$demand->user_id}} 
+                        };
+                        let consenter = {
+                            id: {{$consenter->id}},
+                            userName: "{{$consenter->user->name}}"
+                        };
+                        rejected(demand, consenter);
+                    });
+                </script>
             @endforeach
       </tbody>
     </table>
@@ -105,28 +116,32 @@
                     <th scope="col">承認状態を変える</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody-status-1">
                 @foreach($consenters as $consenter)
                     @if($consenter->status == 1)
-                        <tr>
+                        <tr id="tr-status-1-{{$consenter->id}}">
                             <td class="text-center">{{$consenter->user->name}}</td>
                             <td class="text-center">
-                                @if($consenter->status == 0)
-                                    未確認
-                                @elseif($consenter->status == 1)
-                                    承認中
-                                @else
-                                    却下
-                                @endif
+                                承認中
                             </td>
                             <td class="d-flex justify-content-center px-3">
-                                <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/update" method="post">
-                                    @csrf
-                                    <button class="btn btn-primary px-3" type="submit" name="status" value=2>却下する</button>
-                                </form>
+                                <button id="btn-status-2-{{$consenter->id}}" class="btn btn-primary px-3">却下する</button>
                             </td>
                         </tr>
                     @endif
+                    <script>
+                        $(document).on("click", "#btn-status-2-{{$consenter->id}}", function() {
+                            let demand = {
+                                id: {{$demand->id}}, 
+                                userId: {{$demand->user_id}}
+                            };
+                            let consenter = {
+                                id: {{$consenter->id}},
+                                userName: "{{$consenter->user->name}}"
+                            };
+                            rejected(demand, consenter);
+                        });
+                    </script>
                 @endforeach
             </tbody>
         </table>
@@ -139,32 +154,37 @@
                     <th scope="col">承認状態を変える</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody-status-2">
                 @foreach($consenters as $consenter)
-                    @if($consenter->status > 1)
-                        <tr>
+                    @if($consenter->status == 2)
+                        <tr id="tr-status-2-{{$consenter->id}}">
                             <td class="text-center">{{$consenter->user->name}}</td>
                             <td class="text-center">
-                                @if($consenter->status == 0)
-                                    未確認
-                                @elseif($consenter->status == 1)
-                                    承認中
-                                @else
-                                    却下
-                                @endif
+                                却下
                             </td>
                             <td class="d-flex justify-content-center px-3">
-                                <form action="/consenters/{{$demand->id}}/{{$consenter->id}}/update" method="post">
-                                    @csrf
-                                    <button class="btn btn-primary px-3" type="submit" name="status" value=1>承認する</button>
-                                </form>
+                                <button id="btn-status-1-{{$consenter->id}}" class="btn btn-primary px-3">承認する</button>
                             </td>
                         </tr>
                     @endif
+                    <script>
+                        $(document).on("click", "#btn-status-1-{{$consenter->id}}", function() {
+                            let demand = {
+                                id: {{$demand->id}}, 
+                                userId: {{$demand->user_id}}
+                            };
+                            let consenter = {
+                                id: {{$consenter->id}},
+                                userName: "{{$consenter->user->name}}"
+                            };
+                            approval(demand, consenter);
+                        });
+                    </script>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
 
+<script src="{{ asset('js/demandsShow.js') }}"></script>
 @endsection

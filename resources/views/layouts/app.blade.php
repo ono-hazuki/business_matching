@@ -10,7 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -34,14 +35,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href=/demands/create class="nav-link px-3 link-secondary">案件を作成</a></li>
-                        <li><a href=/my_demands class="nav-link px-3 link-secondary">作成した案件を確認</a></li>
-                        <li><a href=/candidacy_demands class="nav-link px-3 link-secondary">立候補した案件を確認</a></li>
+                    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 mt-3">
+                        <li><a href=/demands/create class="nav-link px-3 link-secondary text-secondary">案件を作成</a></li>
+                        <li><a href=/my_demands class="nav-link px-3 link-secondary text-secondary">作成した案件を確認</a></li>
+                        <li><a href=/candidacy_demands class="nav-link px-3 link-secondary text-secondary">立候補した案件を確認</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto mt-3">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -80,7 +81,7 @@
         </nav>
 
         <main role="main" class="container">
-            <div class="my-3 p-3 bg-white rounded shadow-sm"  style="position: relative; top: 4rem;">
+            <div id="contentBody" class="my-3 p-3 bg-white rounded shadow-sm"  style="position: relative; top: 4rem;">
                 <div class="d-flex align-items-center p-3 my-3 rounded shadow-sm" style="color: white; background-color: orange;">
                     <h1>@yield('title')</h1>
                 </div>
